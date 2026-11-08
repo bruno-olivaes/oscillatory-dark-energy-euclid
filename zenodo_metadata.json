@@ -1,9 +1,10 @@
 {
   "metadata": {
-    "title": "Logarithmic Oscillatory Dark Energy: Empirical Fit to Pantheon+ SNe Ia and Predictive Turnaround Forecasts for the ESA Euclid Space Telescope",
+    "title": "Logarithmic Oscillatory Dark Energy: Full-Covariance Pantheon+ SNe Ia, DESI Year 1 BAO, and Planck CMB Constraints with ESA Euclid Forecasts (v2.0)",
+    "version": "2.0.0",
     "upload_type": "publication",
     "publication_type": "preprint",
-    "description": "Recent cosmological data from the Dark Energy Spectroscopic Instrument (DESI 2024) indicates a statistical preference for dynamical dark energy (w_0 > -1, w_a < 0) when modeled through linear CPL parametrizations. However, linear extrapolations of w(a) predict unbounded phantom divergence in the deep past. In this work, we propose a bounded, harmonic parameterization: the Logarithmic Oscillatory Dark Energy model, w(a) = -1 + A_bulk * sin((2*pi/lambda_bulk)*ln(a) + phi_0). We derive the exact analytical dark energy density evolution without numerical integration approximations and perform maximum likelihood estimation against 1,590 Type Ia Supernovae from the Pantheon+ sample. The oscillatory model fits the observational data with H_0 = 71.08 km/s/Mpc and Chi2 = 772.59 (matching CPL while outperforming standard Lambda-CDM by Delta_Chi2 = -10.86). Crucially, we deliver exact falsifiable predictions for the upcoming deep cosmological surveys of the ESA Euclid Space Telescope (z in [0.5, 3.0]): while linear CPL continues its downward phantom descent to w(3.0) = -2.04, the oscillatory model exhibits a strict sinusoidal turnaround at z ~ 1.7-2.0, curving upward back toward w(3.0) = -1.60. The resulting discrepancy of Delta_w = +0.44 at z = 3.0 provides an unambiguous observational discriminator for high-redshift weak lensing and galaxy clustering catalogs.",
+    "description": "Revised Version 2.0. We investigate a bounded, scale-invariant logarithmic harmonic dark energy equation of state, w(a) = -1 + A sin((2*pi/lambda) ln(a) + phi_0), with an exact analytical solution to the relativistic continuity equation. Replacing the diagonal-only supernova approximation of Version 1.0, we implement an exact joint likelihood combining: (1) the uncalibrated Pantheon+ Hubble-flow SNe Ia sample (N = 1,580) with the full 1580x1580 STAT+SYS covariance matrix analytically marginalized over the absolute magnitude offset M; (2) DESI Year 1 BAO measurements (12 observables across 7 redshift bins, 0.295 <= z <= 2.330); and (3) the Planck 2018 CMB shift parameter R(z_* = 1089.92) = 1.7502 +/- 0.0046. We show that Pantheon+ SNe Ia alone with full covariance recover Om = 0.3325 +/- 0.0182 for flat LCDM (chi2/dof = 0.879) and show no preference for dynamical dark energy (Delta chi2 = -0.49), proving that the Delta chi2 ~ -11 in v1 arose from neglecting off-diagonal calibration covariances. Combining Pantheon+ + DESI BAO + Planck CMB yields an interior best fit (zero boundary collisions) with Delta chi2 = -3.75 for CPL (w0 = -0.867, wa = -0.547) and Delta chi2 = -3.90 for Log-Oscillatory (A = 0.218, lambda = 3.09, phi0 = 0.592 rad; Delta AIC = +2.10, Delta BIC = +18.22). Full emcee MCMC posteriors are propagated into the ESA Euclid spectroscopic BAO window (0.9 < z < 1.8).",
     "creators": [
       {
         "name": "Olivaes, Bruno Luçardo",
@@ -12,18 +13,16 @@
       }
     ],
     "keywords": [
-      "Dark Energy",
-      "Cosmology",
-      "Hubble Tension",
-      "Euclid Space Telescope",
+      "Dark energy",
+      "Cosmological parameters",
+      "Type Ia supernovae",
+      "Pantheon+",
+      "Baryon Acoustic Oscillations",
       "DESI",
-      "Pantheon+ Supernovae",
-      "Equation of State",
-      "Quintessence",
-      "Cosmic Expansion"
+      "ESA Euclid Space Telescope",
+      "Markov Chain Monte Carlo"
     ],
     "license": "CC-BY-4.0",
     "access_right": "open"
   }
 }
-

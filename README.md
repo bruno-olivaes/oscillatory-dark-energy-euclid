@@ -1,92 +1,46 @@
-# Logarithmic Oscillatory Dark Energy & Euclid Turnaround Forecast
+# Logarithmic Oscillatory Dark Energy: Full-Covariance Pantheon+, DESI BAO & Planck CMB Audit (v2.0)
 
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Cosmology: DESI & Euclid](https://img.shields.io/badge/Target-Euclid_ESA-purple.svg)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10+-green.svg)](https://www.python.org/)
+[![Release: v2.0 Audited](https://img.shields.io/badge/Release-v2.0_Full_Covariance_&_MCMC-brightgreen.svg)]()
 
-Empirical fit of a **Logarithmic Oscillatory Dark Energy** equation of state against 1,590 Type Ia Supernovae from the **Pantheon+** catalog, with exact falsifiable forecasts for the **ESA Euclid Space Telescope** ($z = 0.5$ to $3.0$).
-
----
-
-## 1. Theoretical Model & Exact Analytical Solution
-
-Standard linear CPL dark energy parameterization ($w(a) = w_0 + w_a(1-a)$) predicts an unbounded phantom descent into the deep past ($z > 1.5$). We formulate a bounded, harmonic parameterization:
-$$w(a) = -1 + A_{\mathrm{bulk}} \sin\left(\frac{2\pi}{\lambda_{\mathrm{bulk}}} \ln(a) + \phi_0\right)$$
-
-Integrating the cosmological continuity equation $\dot{\rho} + 3H(1+w)\rho = 0$ yields the **exact closed-form dark energy density**:
-$$\frac{\rho_{\mathrm{DE}}(z)}{\rho_0} = \exp\left( -\frac{3 A_{\mathrm{bulk}} \lambda_{\mathrm{bulk}}}{2\pi} \left[ \cos(\phi_0) - \cos\left(-\frac{2\pi}{\lambda_{\mathrm{bulk}}} \ln(1+z) + \phi_0\right) \right] \right)$$
+An observational cosmology pipeline testing a bounded, scale-invariant **Logarithmic Oscillatory Dark Energy** equation of state against flat $\Lambda\mathrm{CDM}$ and the linear **Chevallier–Polarski–Linder (CPL)** parameterization using the **full Pantheon+ $1580\times 1580$ systematic covariance matrix**, **DESI Year 1 BAO**, and **Planck 2018 CMB** shift priors.
 
 ---
 
-## 2. Empirical Validation (Pantheon+ 1,590 SNe Ia)
+## What Changed in Version 2.0 (Post-Publication Audit)
 
-| Model | Free Parameters | $H_0$ ($\mathrm{km/s/Mpc}$) | $\Omega_m$ | $\chi^2$ (1590 SNe) | $\Delta\chi^2$ vs $\Lambda\mathrm{CDM}$ |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| **$\Lambda\mathrm{CDM}$** | 2 | $71.81$ | $0.413$ | $783.45$ | Baseline |
-| **DESI CPL ($w_0, w_a$)** | 4 | $71.06$ | $0.339$ | $772.29$ | $-11.16$ |
-| **Logarithmic Oscillatory** | 5 | $71.08$ | $0.355$ | **$772.59$** | **$-10.86$** |
-
-Both dynamical models substantially improve the fit over standard $\Lambda\mathrm{CDM}$ ($\Delta\chi^2 \approx -11$).
+1. **Full $1580\times 1580$ Pantheon+ Covariance Matrix (Rank-1 Cholesky Marginalization):** Replaced the diagonal-only `MU_SH0ES_ERR_DIAG` approximation of v1 (which produced an unphysical $\chi^2/\mathrm{dof} = 0.49$, biased flat $\Lambda\mathrm{CDM}$ to $\Omega_m = 0.413$, and yielded a spurious $\Delta\chi^2 \approx -11$ from fitting correlated survey calibration offsets) with the exact `Pantheon+SH0ES_STAT+SYS.cov` covariance matrix over the uncalibrated Hubble-flow sample (`zHD > 0.01`, `IS_CALIBRATOR == 0`, $N = 1,580$), analytically marginalized over the nuisance offset $\mathcal{M}$. This recovers **$\Omega_m = 0.3325 \pm 0.0182$** ($\chi^2_{\min} = 1386.41$, $\chi^2/\mathrm{dof} = 0.879$), in exact agreement with Brout et al. (2022, $\Omega_m = 0.334 \pm 0.018$), and proves that Pantheon+ SNe Ia *alone* give $\Delta\chi^2 = -0.49$ (no preference over $\Lambda\mathrm{CDM}$).
+2. **Joint Multi-Probe Likelihood (Pantheon+ + DESI 2024 VI BAO + Planck 2018 CMB):** Combines Pantheon+ with all 12 BAO observables across 7 redshift bins ($0.295 \le z \le 2.330$, including $(D_M/r_d, D_H/r_d)$ covariances) from DESI 2024 VI (arXiv:2404.03002) and the Planck 2018 CMB shift parameter $R(z_* = 1089.92) = 1.7502 \pm 0.0046$ (Chen, Huang & Wang 2019). All models now converge to an **interior minimum** (`at_edge = False`), eliminating the v1 optimizer box-boundary artifacts (`wa = -2.0`, `A = 0.9`, `lambda = 3.0`).
+3. **Affine-Invariant Ensemble MCMC (`emcee`):** Computes full $68\%$ posterior credible intervals and propagates posterior predictive bands for $w(z)$ and $\Delta H(z)/H_{\Lambda\mathrm{CDM}}(z)$ into the ESA Euclid spectroscopic BAO window ($0.9 < z < 1.8$, $\sigma_H/H \approx 1.3\%$, Blanchard et al. 2020).
 
 ---
 
-## 3. Falsifiable Forecasts for the ESA Euclid Space Telescope
+## Audited Multi-Probe Results (v2.0)
 
-At high redshift ($1 < z < 3$), linear CPL and the Oscillatory model diverge sharply:
-
-```
-    w(z)
-      │
- -1.0 ┼─────── ΛCDM (w = -1) ────────────────────────────────
-      │
- -1.4 ┼                    ╭─────── Oscillatory Model (Turnaround!)
-      │                   ╱
- -1.8 ┼──────────╮       ╱
-      │           ╲     ╱
- -2.2 ┼            ╲   v
-      │             ╲________ Linear CPL (Monotonic Phantom Plunge)
-      └─────┬───────┬───────┬───────┬───────┬───────> Redshift z
-           0.5     1.0     1.5     2.0     2.5     3.0
-```
-
-| Redshift $z$ | $w(z)$ Linear CPL | $w(z)$ Oscillatory | Difference $\Delta w$ | Observable Signature |
-| :---: | :---: | :---: | :---: | :--- |
-| **$0.50$** | $-1.2080$ | $-1.3171$ | $-0.109$ | Early phantom phase |
-| **$1.00$** | $-1.5413$ | $-1.7386$ | $-0.197$ | Continued descent |
-| **$1.50$** | $-1.7413$ | $-1.8911$ | $-0.150$ | Oscillatory minimum |
-| **$2.00$** | **$-1.8746$** | **$-1.8740$** | **$0.000$** | **Inflection point (Cross-over)** |
-| **$2.50$** | $-1.9699$ | **$-1.7607$** | **$+0.209$** | **Oscillatory curve reverses upward** |
-| **$3.00$** | $-2.0413$ | **$-1.5984$** | **$+0.443$** | **Massive separation ($\Delta w \approx +0.44$)** |
+| Dataset Combination | Model | $\Delta k$ | Best-Fit Parameters | At Prior Edge? | $\chi^2_{\min}$ | $\Delta\chi^2$ | $\Delta\mathrm{AIC}$ | $\Delta\mathrm{BIC}$ |
+| :--- | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Pantheon+ Only** ($N=1580$) | $\Lambda\mathrm{CDM}$ | $0$ | $\Omega_m = 0.3325 \pm 0.0182$ | No | $1386.41$ | $0.00$ | $0.00$ | $0.00$ |
+| **Pantheon+ Only** ($N=1580$) | DESI CPL | $+2$ | $\Omega_m = 0.2369, w_0 = -0.852, w_a = +0.361$ | No | $1385.94$ | $-0.47$ | $+3.53$ | $+14.26$ |
+| **Pantheon+ Only** ($N=1580$) | Log-Oscillatory | $+3$ | $\Omega_m = 0.2743, A = 0.165, \lambda = 1.87, \phi_0 = 2.61$ | No | $1385.92$ | $-0.49$ | $+5.51$ | $+21.60$ |
+| **Joint SN + DESI BAO + CMB** ($N=1593$) | $\Lambda\mathrm{CDM}$ | $0$ | $\Omega_m = 0.3142$ (MCMC: $0.3144^{+0.0068}_{-0.0070}$) | **No** | **$1402.04$** | **$0.00$** | **$0.00$** | **$0.00$** |
+| **Joint SN + DESI BAO + CMB** ($N=1593$) | **DESI CPL** | $+2$ | $\Omega_m = 0.3134, w_0 = -0.867, w_a = -0.547$ | **No** | **$1398.30$** | **$-3.75$** | **$+0.25$** | **$+11.00$** |
+| **Joint SN + DESI BAO + CMB** ($N=1593$) | **Log-Oscillatory** | $+3$ | $\Omega_m = 0.3135, A = 0.218, \lambda = 3.09, \phi_0 = 0.592$ | **No** | **$1398.15$** | **$-3.90$** | **$+2.10$** | **$+18.22$** |
 
 ---
 
 ## Reproducibility
 
 ```bash
-git clone https://github.com/your-username/oscillatory-dark-energy-euclid.git
-cd oscillatory-dark-energy-euclid
-pip install -r requirements.txt
-python cosmology_oscillatory_dark_energy.py
-```
-*Generates `fig_euclid_hubble_forecast.png` plotting the Hubble diagram, $w(z)$ evolution, and $\Delta\mu(z)$ sensitivity band.*
+# Run full v2.0 multi-probe optimization, emcee MCMC sampling, and figure generation
+python run_full_analysis.py
 
----
-
-## Citation
-
-```bibtex
-@article{olivaes2026oscillatory,
-  author    = {Olivaes, Bruno Lu\c{c}ardo},
-  title     = {Logarithmic Oscillatory Dark Energy: Empirical Fit to Pantheon+ SNe Ia and Predictive Turnaround Forecasts for the ESA Euclid Space Telescope},
-  year      = {2026},
-  journal   = {Preprint},
-  doi       = {10.5281/zenodo.xxxxxx}
-}
+# Run pytest validation suite
+pytest tests
 ```
 
 ---
 
 ## License
 
-Creative Commons Attribution 4.0 International (CC-BY-4.0).
-
+MIT License.
