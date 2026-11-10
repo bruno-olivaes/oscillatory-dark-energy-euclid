@@ -19,3 +19,4 @@ pdflatex main.tex
 Notes:
 - Standard LaTeX packages used: amsmath, amssymb, geometry, graphicx, booktabs, hyperref.
 - Self-contained file referencing embedded bibliography and local figure.
+
