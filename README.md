@@ -1,5 +1,6 @@
 # Logarithmic Oscillatory Dark Energy: Full-Covariance Pantheon+, DESI BAO & Planck CMB Audit (v2.0)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24121691.svg)](https://doi.org/10.5281/zenodo.24121691)
 [![Paper PDF](https://img.shields.io/badge/Paper-PDF_Manuscript-red.svg)](manuscript/main.pdf)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10+-green.svg)](https://www.python.org/)
