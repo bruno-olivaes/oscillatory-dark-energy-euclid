@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software or manuscript, please cite it as below."
+title: "Logarithmic Oscillatory Dark Energy: Full-Covariance Pantheon+ SNe Ia, DESI Year 1 BAO, and Planck CMB Constraints with Stage-IV Euclid Fisher Forecasts"
+type: software
+authors:
+  - given-names: "Bruno Luçardo"
+    family-names: "Olivaes"
+    orcid: "https://orcid.org/0009-0003-5351-446X"
+repository-code: "https://github.com/bruno-olivaes/oscillatory-dark-energy-euclid"
+url: "https://bruno-olivaes.github.io"
+license: MIT
+version: "2.1.0"
+doi: "10.5281/zenodo.24121691"
+date-released: "2026-11-12"
+keywords:
+  - dark energy
+  - cosmology
+  - pantheon+
+  - desi bao
+  - euclid fisher forecast
+

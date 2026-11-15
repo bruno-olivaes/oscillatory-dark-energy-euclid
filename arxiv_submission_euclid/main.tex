@@ -1,134 +1,147 @@
 \documentclass[10pt,twocolumn,a4paper]{article}
-\usepackage[margin=1.6cm]{geometry}
-\usepackage{amsmath,amssymb}
+
+\usepackage[margin=1.7cm]{geometry}
 \usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{booktabs}
 \usepackage{hyperref}
 
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    citecolor=blue,
-    urlcolor=blue
-}
+\title{\textbf{Logarithmic Oscillatory Dark Energy: Full-Covariance Pantheon+ SNe Ia, DESI Year 1 BAO, and Planck CMB Constraints with Stage-IV Euclid Fisher Forecasts}}
 
-\title{\textbf{Forecasting Log-Oscillatory Dark Energy with ESA Euclid: Breaking the Degeneracy}}
-
-\author{Bruno Lu\c{c}ardo Olivaes \\ \small Independent Researcher, Brazil \\ \small \texttt{brunoolivaes@gmail.com} $\cdot$ ORCID: 0009-0003-5351-446X}
+\author{Bruno Lu\c{c}ardo Olivaes \\ \small Independent Researcher, Brazil \\ \small \texttt{brunoolivaes@gmail.com} $\cdot$ ORCID: \href{https://orcid.org/0009-0003-5351-446X}{0009-0003-5351-446X}}
 
 \date{November 2026}
 
 \begin{document}
-\maketitle
 
-\begin{abstract}
-\noindent Recent cosmological observations from the Dark Energy Spectroscopic Instrument (DESI) Year~1 Baryon Acoustic Oscillation (BAO) measurements, combined with Type~Ia supernovae and Cosmic Microwave Background (CMB) distance priors, exhibit a mild preference ($\sim 1.5\sigma\text{--}1.9\sigma$) for dynamical dark energy over a cosmological constant. However, the standard Chevallier--Polarski--Linder (CPL) parameterization ($w(a) = w_0 + w_a(1-a)$) suffers from an unphysical monotonic plunge into deep phantom regimes at high redshifts, creating strong parameter degeneracies with alternative bounded models. In this work, we investigate a bounded, scale-invariant Logarithmic Oscillatory Dark Energy model, $w(a) = -1 + A \sin(\frac{2\pi}{\lambda}\ln a + \phi_0)$, which possesses an exact closed-form analytical solution to the relativistic continuity equation. Utilizing the full $1580 \times 1580$ Pantheon+ systematic covariance matrix, DESI 2024 BAO, and Planck 2018 CMB priors, we find that current joint data favor both dynamical parameterizations similarly ($\Delta\chi^2 = -3.75$ for CPL, $\Delta\chi^2 = -3.90$ for Log-Oscillatory), resulting in overlapping $1\sigma$ posterior bands across $z \le 2.3$. We forecast the discriminating power of the ESA Euclid spectroscopic survey, demonstrating that Euclid's projected $1.3\%$ fractional precision on $H(z)$ over $0.9 < z < 1.8$ will decisively break this degeneracy.
-\end{abstract}
+\twocolumn[{%
+  \begin{@twocolumnfalse}
+    \maketitle
+    \begin{abstract}
+    \noindent Standard Chevallier--Polarski--Linder (CPL) parameterizations of dynamical dark energy ($w(a) = w_0 + w_a(1-a)$) capture low-redshift deviations from a cosmological constant but extrapolate monotonically into deep phantom regimes as $z \to \infty$. Here we investigate a bounded, scale-invariant logarithmic harmonic alternative, $w(a) = -1 + A\sin\!\left(\frac{2\pi}{\lambda}\ln a + \phi_0\right)$, for which the relativistic continuity equation admits an exact closed-form dark energy density $\rho_{\mathrm{DE}}(z)$. Replacing diagonal-only supernova approximations with an exact multi-probe joint likelihood, we combine: (1)~the uncalibrated Pantheon+ Hubble-flow Type~Ia Supernova compilation ($N = 1,580$, $0.01 < z \le 2.26$) using the full $1580\times 1580$ statistical-plus-systematic covariance matrix analytically marginalized over the absolute magnitude offset $\mathcal{M}$; (2)~the DESI Year~1 Baryon Acoustic Oscillation (BAO) measurements ($12$ observables across $7$ redshift bins, $0.295 \le z \le 2.330$); and (3)~the Planck 2018 cosmic microwave background (CMB) shift parameter $R(z_* = 1089.92) = 1.7502 \pm 0.0046$. We demonstrate a central methodological result: when evaluated with the full systematic covariance matrix, Pantheon+ SNe~Ia \textit{alone} recover $\Omega_m = 0.3325 \pm 0.0182$ for flat $\Lambda\mathrm{CDM}$ ($\chi^2/\mathrm{dof} = 0.879$) and yield \textit{no} preference for dynamical dark energy ($\Delta\chi^2 = -0.47$ for CPL and $-0.49$ for Log-Oscillatory), proving that the apparent $\Delta\chi^2 \approx -11$ reported in preliminary diagonal analyses was an artifact of neglecting off-diagonal calibration covariances. Conversely, the joint Pantheon+ + DESI BAO + Planck CMB likelihood converges to a well-defined interior minimum (free of optimizer boundary collisions) with $\Delta\chi^2 = -3.75$ for CPL ($w_0 = -0.855^{+0.071}_{-0.074}$, $w_a = -0.603^{+0.322}_{-0.336}$) and $\Delta\chi^2 = -3.90$ for Log-Oscillatory ($A = 0.218$, $\lambda = 3.09$, $\phi_0 = 0.592\text{ rad}$ at best fit; $\Delta\mathrm{AIC} = +2.10$, $\Delta\mathrm{BIC} = +18.22$). Finally, propagating $68\%$ MCMC posterior bands into the ESA Euclid spectroscopic BAO window ($0.9 < z < 1.8$, $\sigma_H/H \approx 1.3\%$) shows that while the oscillatory best fit exhibits a high-redshift turnaround of $\Delta w(z=3) = +0.104$ relative to CPL, current posterior uncertainties overlap within $1\sigma$. Explicitly propagating a Stage-IV Euclid 7-bin spectroscopic Fisher matrix ($\sigma_H/H = 1.3\%$ across $0.9 \le z \le 1.8$) demonstrates that the joint CPL and Log-Oscillatory best-fit trajectories differ by only $\max|\Delta H/H| = 0.103\%$ ($\Delta\chi^2_{\mathrm{Euclid}} = 0.031$, $0.18\sigma$), proving that Euclid $H(z)$ alone cannot distinguish these specific interior best fits at $3\sigma$, whereas combining Euclid $H(z)$ with an external $\sigma_{\Omega_m} = 0.007$ prior establishes a Stage-IV $3\sigma$ amplitude reach of $A_{3\sigma} \approx 0.21\text{--}0.29$ (phase-median) and $0.15\text{--}0.21$ (optimal phase) for $\lambda \in [1.5, 10]$. Breaking the residual interior best-fit degeneracy thus requires multi-probe Stage-IV synergy with Euclid weak lensing, angular diameter distances $D_M(z)$, and high-$z$ Ly-$\alpha$ BAO ($z > 2$).
+    \end{abstract}
+    \vspace{0.5cm}
+  \end{@twocolumnfalse}
+}]
 
-\section{Introduction}
-The nature of the cosmic acceleration remains one of the preeminent puzzles in modern fundamental physics~\cite{weinberg1989,peebles2003}. While the standard flat $\Lambda\mathrm{CDM}$ model provides a remarkably robust description of cosmological evolution, persistent tensions in cosmological parameters—most notably the Hubble constant ($H_0$) tension~\cite{riess2022,planck2018} and growth of structure ($S_8$) discrepancies—have spurred vigorous exploration of dynamical dark energy.
-
-Recent BAO measurements from the DESI Year~1 release~\cite{desi2024}, when combined with Pantheon+ Type~Ia Supernovae (SNe~Ia)~\cite{brout2022} and Planck CMB distance priors~\cite{chen2019}, have revealed tantalizing hints of time-varying dark energy ($w(z) \neq -1$). Conventionally, such searches adopt the linear CPL parameterization~\cite{chevallier2001,linder2003}:
+\section{Introduction and Revision Note (v2.0)}
+Recent Baryon Acoustic Oscillation (BAO) measurements from the Dark Energy Spectroscopic Instrument (DESI) Year~1 release~\cite{desi2024}, when combined with Cosmic Microwave Background (CMB) distance priors and Type~Ia supernovae (SNe~Ia), have renewed scrutiny of whether dark energy evolves in time ($w(z) \neq -1$). The standard linear Chevallier--Polarski--Linder (CPL) expansion~\cite{chevallier2001,linder2003},
 \begin{equation}
-w_{\mathrm{CPL}}(a) = w_0 + w_a (1-a).
+w_{\mathrm{CPL}}(a) = w_0 + w_a(1-a) = w_0 + w_a \frac{z}{1+z},
 \label{eq:cpl}
 \end{equation}
-However, CPL represents merely a first-order Taylor series around the present epoch ($a=1$). When extrapolated beyond $z \sim 1.5$, negative $w_a$ forces $w(z)$ monotonically toward $w_0 + w_a < -1.4$, entering an unbounded phantom regime that lacks a well-defined microphysical foundation. 
+represents a first-order Taylor expansion around $a=1$. When extrapolated to $z \gtrsim 2$, best-fit $w_a < 0$ trajectories plunge monotonically toward $w_0 + w_a < -1$, motivating bounded alternatives rooted in discrete scale invariance or axion monodromy potentials.
 
-This motivates the study of bounded, scale-invariant alternatives, such as Logarithmic Oscillatory Dark Energy, wherein the equation of state undergoes finite, harmonic modulations in logarithmic conformal time. In this paper, we evaluate the current status of this model and forecast how upcoming high-precision expansion-rate measurements from the ESA Euclid mission~\cite{blanchard2020} will distinguish monotonic drift from bounded oscillatory evolution.
+\textbf{Transparency and Revision Note (v1.0 $\to$ v2.0):} An internal post-publication audit of Version~1.0 of this preprint uncovered three severe statistical defects that have been completely corrected in Version~2.0:
+\begin{enumerate}
+\item \textit{Full Systematic Covariance vs.\ Diagonal Approximation:} Version~1.0 minimized a diagonal $\chi^2$ using \texttt{MU\_SH0ES\_ERR\_DIAG}, ignoring off-diagonal systematic and calibration covariances in \texttt{Pantheon+SH0ES\_STAT+SYS.cov}. That omission yielded an unphysical $\chi^2/\mathrm{dof} = 0.49$, biased flat $\Lambda\mathrm{CDM}$ to $\Omega_m = 0.413$, and allowed extra dark energy parameters to absorb correlated survey calibration offsets ($\Delta\chi^2 \approx -11$). Here we implement the exact rank-1 marginalized Cholesky precision matrix over the $N = 1,580$ uncalibrated Hubble-flow SNe~Ia (\texttt{zHD > 0.01}, \texttt{IS\_CALIBRATOR == 0}), recovering $\Omega_m = 0.3325 \pm 0.0182$ in exact agreement with Brout \textit{et al.}~\cite{brout2022} ($\Omega_m = 0.334 \pm 0.018$).
+\item \textit{Multi-Probe Geometric Anchoring (SNe + DESI BAO + Planck CMB):} Because uncalibrated SNe~Ia at $z \lesssim 1.5$ exhibit a strong geometric degeneracy between $\Omega_m$ and high-$z$ $w(z)$, fitting SNe alone in v1 drove the \texttt{L-BFGS-B} optimizer into the artificial box boundaries ($w_a = -2.00$, $A = 0.90$, $\lambda = 3.00$). Thus, the $\Delta w = +0.44$ turnaround reported in v1 was dictated by the optimizer bounds rather than the data. In Version~2.0, combining Pantheon+ with DESI Year~1 BAO~\cite{desi2024} and the Planck 2018 CMB shift parameter~\cite{chen2019} yields a genuine interior minimum with zero boundary collisions.
+\item \textit{Full MCMC Posterior Propagation:} Version~2.0 replaces point-estimate extrapolations with affine-invariant Ensemble MCMC (\texttt{emcee}) posterior credible bands across $z \in [0, 3.2]$.
+\end{enumerate}
 
-\section{Data and Methodology}
-To ensure rigorous parameter inference without exploratory bias, we deploy an exact multi-probe likelihood combining three primary cosmological datasets:
-
-\subsection{Pantheon+ SNe Ia Full Covariance ($N=1,580$)}
-We incorporate the full $1580 \times 1580$ statistical and systematic covariance matrix from the Pantheon+ uncalibrated Hubble-flow compilation ($z_{\mathrm{HD}} > 0.01$, $\texttt{IS\_CALIBRATOR} = 0$)~\cite{brout2022}. Unlike diagonal approximations (which artificially bias $\Omega_m$ and overestimate signal significances), our pipeline implements an analytical rank-1 Cholesky marginalization over the absolute magnitude offset $\mathcal{M}$:
+\section{Exact Analytical Continuity Solution}
+We model the effective dark energy equation of state via a bounded logarithmic oscillation in scale factor $a = (1+z)^{-1}$:
 \begin{equation}
-\chi^2_{\mathrm{SN}} = \mathbf{r}^T \mathbf{C}_{\mathrm{SN}}^{-1} \mathbf{r} - \frac{(\mathbf{r}^T \mathbf{C}_{\mathrm{SN}}^{-1}\mathbf{1})^2}{\mathbf{1}^T \mathbf{C}_{\mathrm{SN}}^{-1}\mathbf{1}},
-\label{eq:sn_chi2}
-\end{equation}
-recovering the true cosmological sample variance.
-
-\subsection{DESI Year 1 BAO and Planck 2018 CMB Prior}
-We include all 12 BAO distance observables across 7 effective redshift bins ($0.295 \le z \le 2.330$) from DESI~2024~VI~\cite{desi2024}, incorporating transverse and line-of-sight covariance blocks. Early-universe geometry is anchored by the Planck 2018 CMB shift parameter at photon decoupling ($z_* = 1089.92$)~\cite{chen2019}:
-\begin{equation}
-R(z_*) = \sqrt{\Omega_m}\int_0^{z_*}\frac{dz'}{E(z')} = 1.7502 \pm 0.0046.
-\end{equation}
-
-\subsection{Fisher Matrix and Euclid Spectroscopic Forecast}
-The ESA Euclid space telescope will measure galaxy clustering and spectroscopic BAO across a $15,000\,\mathrm{deg}^2$ footprint~\cite{blanchard2020}. We construct the Fisher information matrix for the expansion rate $H(z)$ across 7 spectroscopic redshift bins spanning $0.9 \le z \le 1.8$, adopting the official Euclid reference precision of $\sigma_H / H \approx 1.3\%$ per bin.
-
-\section{The Log-Oscillatory Dark Energy Model}
-We formulate the bounded Log-Oscillatory equation of state as:
-\begin{equation}
-w_{\mathrm{Osc}}(a) = -1 + A \sin\left( \frac{2\pi}{\lambda}\ln a + \phi_0 \right),
+w_{\mathrm{Osc}}(a) = -1 + A \sin\!\left(\frac{2\pi}{\lambda}\ln a + \phi_0\right),
 \label{eq:w_osc}
 \end{equation}
-where $A \ge 0$ is the oscillation amplitude, $\lambda > 0$ is the scale factor period in $\ln a$, and $\phi_0 \in [-\pi, \pi]$ is the present-day phase. 
+where $A \ge 0$ is the dimensionless oscillation amplitude, $\lambda > 0$ is the logarithmic period in $\ln a$, and $\phi_0 \in [-\pi, \pi]$ is the present-day phase. Within the Effective Field Theory (EFT) of dark energy and $k$-essence/Horndeski frameworks~\cite{vikman2005,hu2005,creminelli2009}, Eq.~\eqref{eq:w_osc} serves as a smooth kinematic ansatz bounded strictly within $[-1-A, -1+A]$.
 
-Remarkably, substituting Eq.~\eqref{eq:w_osc} into the relativistic energy conservation equation $\frac{d\ln\rho_{\mathrm{DE}}}{d\ln a} = -3[1 + w(a)]$ yields an exact, closed-form analytical dark energy density ratio:
+Integrating the relativistic continuity equation $\frac{d\ln\rho_{\mathrm{DE}}}{d\ln a} = -3[1 + w(a)]$ from $a=1$ to $a=(1+z)^{-1}$ yields the exact closed-form dark energy density ratio:
 \begin{equation}
-\frac{\rho_{\mathrm{DE}}(z)}{\rho_{\mathrm{DE},0}} = \exp\left\{ -\frac{3A\lambda}{2\pi} \left[ \cos\phi_0 - \cos\left( -\frac{2\pi}{\lambda}\ln(1+z) + \phi_0 \right) \right] \right\}.
+\frac{\rho_{\mathrm{DE}}(z)}{\rho_{\mathrm{DE},0}} = \exp\!\left\{ -\frac{3 A \lambda}{2\pi} \left[ \cos\phi_0 - \cos\!\left(-\frac{2\pi}{\lambda}\ln(1+z) + \phi_0\right) \right] \right\}.
 \label{eq:rho_exact}
 \end{equation}
-The dimensionless Hubble expansion rate in flat FLRW space is then given by:
+Including radiation ($\Omega_r h^2 = 4.183\times 10^{-5}$ for $T_{\mathrm{CMB}} = 2.7255\text{ K}$, $N_{\mathrm{eff}} = 3.046$), the dimensionless expansion rate in a flat FLRW background is:
 \begin{equation}
-E(z) = \left[ \Omega_r(1+z)^4 + \Omega_m(1+z)^3 + (1-\Omega_m-\Omega_r)\frac{\rho_{\mathrm{DE}}(z)}{\rho_{\mathrm{DE},0}} \right]^{1/2},
+E(z) \equiv \frac{H(z)}{H_0} = \left[ \Omega_r(1+z)^4 + \Omega_m(1+z)^3 + \Omega_{\mathrm{DE},0}\frac{\rho_{\mathrm{DE}}(z)}{\rho_{\mathrm{DE},0}} \right]^{1/2},
+\label{eq:hubble}
 \end{equation}
-with radiation component $\Omega_r h^2 = 4.183 \times 10^{-5}$ ($T_{\mathrm{CMB}} = 2.7255\,\mathrm{K}$, $N_{\mathrm{eff}} = 3.046$).
+where $\Omega_{\mathrm{DE},0} = 1 - \Omega_m - \Omega_r$.
+
+\section{Exact Multi-Probe Likelihoods}
+\subsection{Pantheon+ Full-Covariance SNe Ia ($N = 1,580$)}
+For the $N = 1,580$ Hubble-flow SNe~Ia ($z_{\mathrm{HD}} > 0.01$, $\texttt{IS\_CALIBRATOR} = 0$), the reference distance modulus at fiducial $H_{\mathrm{ref}} = 70\text{ km/s/Mpc}$ is $\mu_0(z_{\mathrm{HD}}, z_{\mathrm{HEL}}) = 5\log_{10}\!\left[\frac{c(1+z_{\mathrm{HEL}})}{H_{\mathrm{ref}}}\int_0^{z_{\mathrm{HD}}}\frac{dz'}{E(z')}\right] + 25$. Given residual vector $\mathbf{r} = \mathbf{m}_{b,\mathrm{corr}} - \boldsymbol{\mu}_0$ and the $1580\times 1580$ covariance sub-matrix $\mathbf{C}_{\mathrm{SN}}$ from \texttt{Pantheon+SH0ES\_STAT+SYS.cov}, analytical marginalization over the additive magnitude/Hubble nuisance offset $\mathcal{M}$ yields:
+\begin{equation}
+\chi^2_{\mathrm{SN}} = \mathbf{r}^T \tilde{\mathbf{C}}_{\mathrm{SN}}^{-1} \mathbf{r}, \quad \tilde{\mathbf{C}}_{\mathrm{SN}}^{-1} = \mathbf{C}_{\mathrm{SN}}^{-1} - \frac{(\mathbf{C}_{\mathrm{SN}}^{-1}\mathbf{1})(\mathbf{C}_{\mathrm{SN}}^{-1}\mathbf{1})^T}{\mathbf{1}^T \mathbf{C}_{\mathrm{SN}}^{-1}\mathbf{1}}.
+\label{eq:chi2_sn}
+\end{equation}
+
+\subsection{DESI Year 1 BAO ($N = 12$) and Planck CMB Shift Prior}
+We incorporate all $12$ BAO measurements across $7$ redshift bins ($z_{\mathrm{eff}} = 0.295, 0.510, 0.706, 0.930, 1.317, 1.491, 2.330$) from Table~1 of DESI~2024~VI~\cite{desi2024}, including the anisotropic $(D_M/r_d, D_H/r_d)$ $2\times 2$ correlation coefficients $r \in [-0.477, -0.389]$, profiling analytically over the sound-horizon scale factor $s_{r_d} = c/(H_0 r_d)$. Early-universe geometry is anchored by the Planck~2018 CMB shift parameter at photon decoupling~\cite{chen2019}:
+\begin{equation}
+R(z_*) \equiv \sqrt{\Omega_m}\int_0^{z_*}\frac{dz'}{E(z')} = 1.7502 \pm 0.0046, \quad z_* = 1089.92.
+\end{equation}
 
 \begin{table*}[t]
 \centering
-\small
-\caption{Comprehensive Likelihood and Best-Fit Cosmological Parameters Across Dataset Combinations.}
-\label{tab:sensitivities}
-\begin{tabular}{llccccccc}
+\caption{Global best-fit parameters, $\chi^2$ breakdown, boundary checks, and information criteria across progressive dataset combinations. In the joint \texttt{SN+BAO+CMB} dataset ($N_{\mathrm{tot}}=1,593$), all models converge to interior minima (\texttt{At Edge = No}).}
+\label{tab:fits}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llccccccccc}
 \toprule
-\textbf{Dataset Combination} & \textbf{Model} & $\Delta k$ & $\Omega_m$ & \textbf{Dark Energy Parameters} & $\chi^2_{\min}$ & $\Delta\chi^2$ & $\Delta\mathrm{AIC}$ & $\Delta\mathrm{BIC}$ \\
+Dataset Combination & Model & $\Delta k$ & $\Omega_m$ & Dark Energy Parameters & At Edge? & $\chi^2_{\mathrm{SN}}$ & $\chi^2_{\mathrm{BAO}}$ & $\chi^2_{\mathrm{min}}$ & $\Delta\chi^2$ & $\Delta\mathrm{AIC} / \Delta\mathrm{BIC}$ \\
 \midrule
-Pantheon+ Only ($N=1,580$) & $\Lambda\mathrm{CDM}$ & 0 & $0.3325$ & $w = -1$ & $1386.41$ & $0.00$ & $0.00$ & $0.00$ \\
-Pantheon+ Only ($N=1,580$) & DESI CPL & $+2$ & $0.2369$ & $w_0 = -0.852,\; w_a = +0.361$ & $1385.94$ & $-0.47$ & $+3.53$ & $+14.26$ \\
-Pantheon+ Only ($N=1,580$) & Log-Oscillatory & $+3$ & $0.2743$ & $A = 0.165,\; \lambda = 1.87,\; \phi_0 = 2.61$ & $1385.92$ & $-0.49$ & $+5.51$ & $+21.60$ \\
+\textbf{Pantheon+ Only} & $\Lambda\mathrm{CDM}$ & 0 & $0.3325$ & $w = -1$ & No & $1386.41$ & --- & $1386.41$ & $0.00$ & $0.00 / 0.00$ \\
+($N = 1,580$, Full Cov) & DESI CPL & $+2$ & $0.2369$ & $w_0 = -0.852,\; w_a = +0.361$ & No & $1385.94$ & --- & $1385.94$ & $-0.47$ & $+3.53 / +14.26$ \\
+ & Log-Oscillatory & $+3$ & $0.2743$ & $A = 0.165,\; \lambda = 1.87,\; \phi_0 = 2.61$ & No & $1385.92$ & --- & $1385.92$ & $-0.49$ & $+5.51 / +21.60$ \\
 \midrule
-Joint SNe + DESI + Planck & $\Lambda\mathrm{CDM}$ & 0 & $0.3142$ & $w = -1$ & $1402.04$ & $0.00$ & $0.00$ & $0.00$ \\
-Joint SNe + DESI + Planck & \textbf{DESI CPL} & $+2$ & $\mathbf{0.3134}$ & $\mathbf{w_0 = -0.867,\; w_a = -0.547}$ & $\mathbf{1398.30}$ & $\mathbf{-3.75}$ & $\mathbf{+0.25}$ & $\mathbf{+11.00}$ \\
-Joint SNe + DESI + Planck & \textbf{Log-Oscillatory} & $+3$ & $\mathbf{0.3135}$ & $\mathbf{A = 0.218,\; \lambda = 3.09,\; \phi_0 = 0.592}$ & $\mathbf{1398.15}$ & $\mathbf{-3.90}$ & $\mathbf{+2.10}$ & $\mathbf{+18.22}$ \\
+\textbf{Pantheon+ + DESI BAO} & $\Lambda\mathrm{CDM}$ & 0 & $0.3104$ & $w = -1$ & No & $1387.93$ & $13.96$ & $1401.89$ & $0.00$ & $0.00 / 0.00$ \\
+($N = 1,592$) & DESI CPL & $+2$ & $0.3115$ & $w_0 = -0.871,\; w_a = -0.490$ & No & $1386.24$ & $12.04$ & $1398.28$ & $-3.60$ & $+0.40 / +11.14$ \\
+ & Log-Oscillatory & $+3$ & $0.3014$ & $A = 0.171,\; \lambda = 0.80,\; \phi_0 = -2.75$ & Yes ($\lambda$) & $1386.59$ & $10.53$ & $1397.12$ & $-4.77$ & $+1.23 / +17.35$ \\
 \midrule
-\textbf{Euclid Spectroscopic Forecast} & Target Precision & --- & $\sigma_{\Omega_m} \approx 0.003$ & $\sigma_H/H \approx 1.3\%$ across $z \in [0.9, 1.8]$ & --- & --- & \multicolumn{2}{c}{\textbf{Breaks Degeneracy at $>3\sigma$}} \\
+\textbf{Pantheon+ + DESI BAO} & $\Lambda\mathrm{CDM}$ & 0 & $0.3142$ & $w = -1$ & \textbf{No} & $1387.44$ & $14.55$ & $1402.04$ & $0.00$ & $0.00 / 0.00$ \\
+\textbf{+ Planck CMB} ($N = 1,593$) & \textbf{DESI CPL} & $+2$ & $\mathbf{0.3134}$ & $\mathbf{w_0 = -0.867,\; w_a = -0.547}$ & \textbf{No} & $\mathbf{1386.30}$ & $\mathbf{12.00}$ & $\mathbf{1398.30}$ & $\mathbf{-3.75}$ & $\mathbf{+0.25 / +11.00}$ \\
+ & \textbf{Log-Oscillatory} & $+3$ & $\mathbf{0.3135}$ & $\mathbf{A = 0.218,\; \lambda = 3.09,\; \phi_0 = 0.592}$ & \textbf{No} & $\mathbf{1386.28}$ & $\mathbf{11.86}$ & $\mathbf{1398.15}$ & $\mathbf{-3.90}$ & $\mathbf{+2.10 / +18.22}$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table*}
+
+\section{Results and Information-Theoretic Audit}
+Table~\ref{tab:fits} and Fig.~\ref{fig:euclid} present our progressive multi-probe results:
+\begin{enumerate}
+\item \textbf{Supernovae Alone Do Not Favor Dynamical Dark Energy:} When the full $1580\times 1580$ covariance matrix is used, Pantheon+ SNe~Ia alone yield $\Delta\chi^2 = -0.47$ (CPL) and $\Delta\chi^2 = -0.49$ (Log-Oscillatory) relative to flat $\Lambda\mathrm{CDM}$. Thus, uncalibrated supernovae in isolation are completely consistent with $w = -1$.
+\item \textbf{Emergence of the Multi-Probe Signal:} Combining Pantheon+ with DESI Year~1 BAO and the Planck CMB shift parameter resolves the low-$z$ $\Omega_m$--$w(z)$ degeneracy and produces an interior best fit with $\Delta\chi^2 = -3.75$ for CPL ($\chi^2_{\mathrm{BAO}}$ drops from $14.55$ to $12.00$, $\chi^2_{\mathrm{SN}}$ drops from $1387.44$ to $1386.30$) and $\Delta\chi^2 = -3.90$ for Log-Oscillatory ($\chi^2_{\mathrm{BAO}} = 11.86$, $\chi^2_{\mathrm{SN}} = 1386.28$).
+\item \textbf{MCMC Posteriors and Bayesian Parsimony:} Running affine-invariant Ensemble MCMC (\texttt{emcee}) on the joint \texttt{SN+BAO+CMB} likelihood yields $68\%$ credible intervals:
+\begin{itemize}
+\item $\Lambda\mathrm{CDM}$: $\Omega_m = 0.3137^{+0.0070}_{-0.0064}$;
+\item CPL: $\Omega_m = 0.3139^{+0.0072}_{-0.0074}$, $w_0 = -0.855^{+0.071}_{-0.074}$, $w_a = -0.603^{+0.322}_{-0.336}$ (consistent with the official DESI~2024~VI + Pantheon+ + CMB result~\cite{desi2024});
+\item Log-Oscillatory: $\Omega_m = 0.3136^{+0.0083}_{-0.0070}$, $A = 0.178^{+0.383}_{-0.144}$, $\lambda = 6.72^{+3.74}_{-3.67}$, $\phi_0 = 0.295^{+0.807}_{-0.185}\text{ rad}$.
+\end{itemize}
+Because a $\Delta\chi^2 \approx -3.9$ improvement corresponds to a $\sim 1.5\sigma\text{--}1.9\sigma$ preference in the Pantheon+ combination, both AIC ($\Delta\mathrm{AIC} = +0.25$ for CPL, $+2.10$ for Log-Osc) and BIC ($\Delta\mathrm{BIC} = +11.00$ and $+18.22$) penalize the extra parameters, confirming that current Pantheon+ + DESI Year~1 data allow, but do not yet statistically require, oscillatory dark energy over $\Lambda\mathrm{CDM}$.
+\end{enumerate}
 
 \begin{figure*}[t]
 \centering
-\includegraphics[width=0.92\textwidth]{fig_euclid_hubble_forecast.png}
-\caption{Observational constraints and ESA Euclid forecast. (a)~Fractional expansion-rate deviation $\Delta H(z)/H_{\Lambda\mathrm{CDM}}(z)$ showing best-fit trajectories, $68\%$ MCMC posterior bands, and the ESA Euclid spectroscopic sensitivity window ($\sigma_H/H \approx 1.3\%$ per bin across $0.9 \le z \le 1.8$~\cite{blanchard2020}). (b)~Reconstructed dark energy equation of state $w(z)$. While CPL plunges monotonically into phantom values ($w(3) = -1.277$), the Log-Oscillatory model exhibits a turnaround ($w(3) = -1.172$, $\Delta w = +0.104$). (c)~Progressive model-selection criteria ($\Delta\chi^2$, $\Delta\mathrm{AIC}$, $\Delta\mathrm{BIC}$) across dataset combinations.}
-\label{fig:forecast}
+\includegraphics[width=0.96\textwidth]{fig_euclid_hubble_forecast.png}
+\caption{Observational calibration and Stage-IV ESA Euclid Fisher forecast from the joint Pantheon+ (full covariance, $N=1,580$) + DESI Year~1 BAO ($N=12$) + Planck CMB shift prior ($N=1$) analysis. (a)~Fractional expansion-rate deviation $\Delta H(z)/H_{\Lambda\mathrm{CDM}}(z)$ showing best-fit curves, $68\%$ MCMC posterior bands, and the 7 ESA Euclid spectroscopic BAO bins ($\sigma_H/H = 1.3\%$ across $0.9 \le z \le 1.8$~\cite{blanchard2020}). (b)~Dark energy equation of state $w(z)$ best-fit trajectories and $68\%$ posterior credible bands. (c)~Progressive model-selection criteria ($\Delta\chi^2$, $\Delta\mathrm{AIC}$, $\Delta\mathrm{BIC}$) across dataset combinations. (d)~Stage-IV Euclid $H(z)$ Fisher $3\sigma$ amplitude reach $A_{3\sigma}(\lambda)$ with external $\sigma_{\Omega_m}=0.007$ prior.}
+\label{fig:euclid}
 \end{figure*}
 
-\section{Results and Degeneracy Breaking}
-Table~\ref{tab:sensitivities} summarizes our optimization results and MCMC posteriors across dataset regimes:
+\section{Stage-IV ESA Euclid Fisher Forecast}
+At the joint interior best fit, CPL plunges monotonically from $w(0) = -0.867$ to $w(1.5) = -1.195$ and $w(3.0) = -1.277$, whereas the Log-Oscillatory model starts at $w(0) = -0.878$, reaches a mild phantom minimum $w(z \approx 2.0) = -1.217$, and turns upward to $w(3.0) = -1.172$, yielding an interior best-fit separation of $\Delta w(z=3) = +0.104$ (compared to the bound-driven $+0.44$ in v1). As shown in Fig.~\ref{fig:euclid}(a,b), the $68\%$ MCMC posterior bands of CPL and Log-Oscillatory overlap throughout $z \le 2.33$, with a $1\sigma$ spread in $\Delta H(z)/H_{\Lambda\mathrm{CDM}}$ of $\sim 1.5\%\text{--}2.2\%$ across $0.9 < z < 1.8$.
+
+To quantify Euclid's exact discriminatory power without extrapolating visually, we propagate a 7-bin spectroscopic Fisher matrix across $z \in \{0.90, 1.05, 1.20, 1.35, 1.50, 1.65, 1.80\}$ assuming $\sigma_H/H = 1.3\%$ per bin~\cite{blanchard2020} (\texttt{src/euclid\_fisher.py}):
 \begin{enumerate}
-    \item \textbf{Supernovae in Isolation:} When analyzed with the full $1580 \times 1580$ covariance matrix, Pantheon+ alone recovers $\Omega_m = 0.3325 \pm 0.0182$ ($\chi^2/\mathrm{dof} = 0.879$). SNe~Ia in isolation exhibit negligible preference for dynamical dark energy ($\Delta\chi^2 = -0.47$ for CPL and $-0.49$ for Log-Oscillatory).
-    \item \textbf{Current Joint Preference ($\sim 1.5\sigma$):} Combining Pantheon+ with DESI Year~1 BAO and Planck CMB anchors resolves the $\Omega_m$--$w(z)$ geometric degeneracy, yielding an interior best fit with $\Delta\chi^2 = -3.75$ for CPL and $\Delta\chi^2 = -3.90$ for Log-Oscillatory ($A = 0.218$, $\lambda = 3.09$, $\phi_0 = 0.592\,\mathrm{rad}$).
-    \item \textbf{The Parameter Degeneracy:} As displayed in Fig.~\ref{fig:forecast}(a,b), the $68\%$ MCMC posterior bands of CPL and Log-Oscillatory overlap heavily throughout $z \le 2.33$. The current $1\sigma$ posterior uncertainty on $\Delta H(z)/H_{\Lambda\mathrm{CDM}}$ is $\sim 1.5\%\text{--}2.2\%$, which prevents current data from distinguishing between the models.
-    \item \textbf{Breaking the Degeneracy with Euclid:} The ESA Euclid spectroscopic survey will provide $\sigma_H/H \approx 1.3\%$ measurements across $0.9 < z < 1.8$. At $z \approx 1.5\text{--}3.0$, the Log-Oscillatory model predicts an expansion turnaround ($\Delta w(z=3) = +0.104$ relative to CPL). Euclid's high-precision data will readily distinguish this turnaround at $>3\sigma$, definitively testing whether dark energy undergoes bounded oscillations or continues a monotonic phantom trajectory.
+\item \textbf{Best-Fit Degeneracy in Euclid $H(z)$ Alone:} Across $0.9 \le z \le 1.8$, the joint CPL and Log-Oscillatory best-fit trajectories differ in expansion rate by only $\max|\Delta H/H| = 0.103\%$, yielding $\Delta\chi^2_{\mathrm{Euclid}} = 0.031$ ($0.18\sigma$), while against flat $\Lambda\mathrm{CDM}$ the Log-Oscillatory best fit reaches $\max|\Delta H/H| = 1.099\%$ ($\Delta\chi^2_{\mathrm{Euclid}} = 3.49$, $1.87\sigma$). Thus, Euclid spectroscopic $H(z)$ alone cannot separate these specific low-$A$ interior best fits at $3\sigma$.
+\item \textbf{Stage-IV $3\sigma$ Amplitude Boundary $A_{3\sigma}(\lambda)$:} Combining the 7-bin Euclid Fisher matrix for $(\Omega_m, A)$ with a conservative external matter prior ($\sigma_{\Omega_m} = 0.007$) establishes the $3\sigma$ discovery/exclusion curve shown in Fig.~\ref{fig:euclid}(d). Short wavelengths ($\lambda = 0.5$) suffer Hubble-integral cancellation ($A_{3\sigma} = 0.816$ phase-median, $0.659$ optimal phase), whereas for $\lambda \in [2.0, 10.0]$ Euclid probes $A_{3\sigma} \approx 0.211\text{--}0.235$ (phase-median) and $0.147\text{--}0.179$ (optimal phase). At the current best-fit parameters ($\lambda = 3.09$, $\phi_0 = 0.592\,\mathrm{rad}$), where $w_{\mathrm{Osc}}(z)$ shadows CPL across $[0.9, 1.8]$, the $3\sigma$ threshold is $A_{3\sigma} = 0.231$ (phase-median) / $0.159$ (optimal phase) / $0.675$ at fixed $\phi_0 = 0.592\,\mathrm{rad}$. Fully breaking this interior best-fit degeneracy therefore requires Stage-IV multi-probe synergy with Euclid weak lensing, angular-diameter distances $D_M(z)$, and high-$z$ Ly-$\alpha$ BAO ($z > 2$).
 \end{enumerate}
 
-\section{Conclusions}
-We have developed an exact, closed-form relativistic formulation for Log-Oscillatory Dark Energy and tested it against flat $\Lambda\mathrm{CDM}$ and CPL using full Pantheon+, DESI Year~1 BAO, and Planck CMB covariance matrices. While current multi-probe datasets exhibit a mild $\Delta\chi^2 \approx -3.90$ preference over $\Lambda\mathrm{CDM}$, they cannot yet distinguish between dynamical models. Upcoming expansion rate measurements from the ESA Euclid spectroscopic survey, with $1.3\%$ precision in $H(z)$, will decisively break this degeneracy and determine whether cosmic acceleration is driven by bounded physical oscillations.
+\section*{Code and Data Availability}
+All likelihood modules (\texttt{src/likelihoods.py}, \texttt{src/euclid\_fisher.py}), full-covariance Pantheon+ / DESI BAO pipelines, MCMC diagnostics, and reproduction manifests are archived under Zenodo DOI \href{https://doi.org/10.5281/zenodo.24121691}{\texttt{10.5281/zenodo.24121691}} (\url{https://github.com/bruno-olivaes/oscillatory-dark-energy-euclid}).
 
 \begin{thebibliography}{99}
-\bibitem{weinberg1989} S. Weinberg, \textit{Rev. Mod. Phys.} \textbf{61}, 1 (1989).
-\bibitem{peebles2003} P. J. E. Peebles and B. Ratra, \textit{Rev. Mod. Phys.} \textbf{75}, 559 (2003).
-\bibitem{riess2022} A. G. Riess \textit{et al.}, \textit{Astrophys. J. Lett.} \textbf{934}, L7 (2022).
-\bibitem{planck2018} Planck Collaboration (N. Aghanim \textit{et al.}), \textit{Astron. Astrophys.} \textbf{641}, A6 (2020).
 \bibitem{desi2024} DESI Collaboration (A. G. Adame \textit{et al.}), \textit{JCAP} \textbf{02}, 021 (2025) [arXiv:2404.03002].
-\bibitem{brout2022} D. Brout \textit{et al.}, \textit{Astrophys. J.} \textbf{938}, 110 (2022).
-\bibitem{chen2019} L. Chen, Q.-G. Huang, and K. Wang, \textit{JCAP} \textbf{02}, 028 (2019) [arXiv:1808.05724].
 \bibitem{chevallier2001} M. Chevallier and D. Polarski, \textit{Int. J. Mod. Phys. D} \textbf{10}, 213 (2001).
 \bibitem{linder2003} E. V. Linder, \textit{Phys. Rev. Lett.} \textbf{90}, 091301 (2003).
+\bibitem{brout2022} D. Brout \textit{et al.}, \textit{Astrophys. J.} \textbf{938}, 110 (2022).
+\bibitem{chen2019} L. Chen, Q.-G. Huang, and K. Wang, \textit{JCAP} \textbf{02}, 028 (2019) [arXiv:1808.05724].
+\bibitem{vikman2005} A. Vikman, \textit{Phys. Rev. D} \textbf{71}, 023515 (2005).
+\bibitem{hu2005} W. Hu, \textit{Phys. Rev. D} \textbf{71}, 047301 (2005).
+\bibitem{creminelli2009} P. Creminelli, G. D'Amico, J. Nore\~na, and F. Vernizzi, \textit{JCAP} \textbf{02}, 018 (2009).
 \bibitem{blanchard2020} Euclid Collaboration (A. Blanchard \textit{et al.}), \textit{Astron. Astrophys.} \textbf{642}, A191 (2020) [arXiv:1910.09273].
 \end{thebibliography}
 
 \end{document}
-

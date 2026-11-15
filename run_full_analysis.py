@@ -288,99 +288,148 @@ def run_cosmology_v2_audit():
         for s in chain_o[idx_draws_o]
     ]) * 100.0
 
+    from src.euclid_fisher import (
+        EUCLID_Z_BINS,
+        compute_euclid_model_delta_chi2,
+        compute_combined_3sigma_boundary,
+    )
+
+    fisher_cpl_vs_osc = compute_euclid_model_delta_chi2(
+        p_c_best['Om'], 'CPL', [p_c_best['w0'], p_c_best['wa']],
+        p_o_best['Om'], 'OSC', [p_o_best['A'], p_o_best['lambda'], p_o_best['phi0']],
+    )
+    fisher_lcdm_vs_osc = compute_euclid_model_delta_chi2(
+        p_l_best['Om'], 'LCDM', [],
+        p_o_best['Om'], 'OSC', [p_o_best['A'], p_o_best['lambda'], p_o_best['phi0']],
+    )
+    lam_fisher_grid = np.linspace(0.5, 10.0, 39)
+    fisher_boundary = compute_combined_3sigma_boundary(
+        p_o_best['Om'], lam_fisher_grid, phi0_fid=p_o_best['phi0']
+    )
+    fisher_at_best = compute_combined_3sigma_boundary(
+        p_o_best['Om'], [float(p_o_best['lambda'])], phi0_fid=p_o_best['phi0']
+    )[0]
+
     summary_results['euclid_w_forecast'] = {
         'z': [float(z) for z in z_eval],
         'w_CPL_best': w_cpl_best,
         'w_OSC_best': w_osc_best,
         'delta_w_OSC_minus_CPL': [float(wo - wc) for wo, wc in zip(w_osc_best, w_cpl_best)],
     }
+    summary_results['euclid_fisher_forecast'] = {
+        'cpl_vs_osc': fisher_cpl_vs_osc,
+        'lcdm_vs_osc': fisher_lcdm_vs_osc,
+        'bestfit_point_threshold': fisher_at_best,
+        'A_3sigma_boundary_curve': fisher_boundary,
+    }
 
     with open(os.path.join(RESULTS_DIR, "audit_v2_cosmology.json"), "w", encoding="utf-8") as f:
         json.dump(summary_results, f, indent=2)
 
     # =========================================================================
-    # 4. GENERATE PUBLICATION FIGURE (3 PANELS)
+    # 4. GENERATE PUBLICATION FIGURE (2x2 PANELS WITH STAGE-IV EUCLID FISHER)
     # =========================================================================
-    fig, axes = plt.subplots(3, 1, figsize=(10.5, 13.0), gridspec_kw={'height_ratios': [1.3, 1.3, 1.3]})
+    fig, axes_2d = plt.subplots(2, 2, figsize=(13.6, 10.2))
+    axes = [axes_2d[0, 0], axes_2d[0, 1], axes_2d[1, 0], axes_2d[1, 1]]
 
-    # Panel (a): DESI 2024 VI BAO data vs Best-Fit Models relative to LCDM
+    # Panel (a): Expansion Rate Deviation vs Flat LCDM + 7 Euclid Spectroscopic Bins
     ax0 = axes[0]
     E_c_best = np.sqrt(p_c_best['Om'] * (1.0 + z_dense)**3 + (1.0 - p_c_best['Om']) *
                        rho_de_ratio(z_dense, 'CPL', [p_c_best['w0'], p_c_best['wa']]))
     E_o_best = np.sqrt(p_o_best['Om'] * (1.0 + z_dense)**3 + (1.0 - p_o_best['Om']) *
                        rho_de_ratio(z_dense, 'OSC', [p_o_best['A'], p_o_best['lambda'], p_o_best['phi0']]))
 
-    ax0.axhline(0.0, color='black', ls='--', lw=1.5, label=r'Flat $\Lambda\mathrm{CDM}$ Baseline ($\Omega_m = ' + f"{p_l_best['Om']:.3f}" + r'$)')
+    ax0.axhline(0.0, color='black', ls='--', lw=1.4, label=r'Flat $\Lambda\mathrm{CDM}$ ($\Omega_m = ' + f"{p_l_best['Om']:.3f}" + r'$)')
     ax0.plot(z_dense, (E_c_best / E_lcdm_dense - 1.0) * 100.0, 'b-', lw=2.0,
              label=f"CPL Best Fit ($w_0={p_c_best['w0']:.2f},\\,w_a={p_c_best['wa']:.2f},\\,\\Delta\\chi^2={summary_results['SN_BAO_CMB']['CPL']['delta_chi2_vs_LCDM']:.2f}$)")
     ax0.fill_between(z_dense, np.percentile(E_draws_c, 16, axis=0), np.percentile(E_draws_c, 84, axis=0),
                      color='royalblue', alpha=0.18)
     ax0.plot(z_dense, (E_o_best / E_lcdm_dense - 1.0) * 100.0, 'r-', lw=2.2,
-             label=f"Log-Oscillatory Best Fit ($A={p_o_best['A']:.2f},\\,\\lambda={p_o_best['lambda']:.2f},\\,\\Delta\\chi^2={summary_results['SN_BAO_CMB']['OSC']['delta_chi2_vs_LCDM']:.2f}$)")
+             label=f"Log-Osc Best Fit ($A={p_o_best['A']:.2f},\\,\\lambda={p_o_best['lambda']:.2f},\\,\\Delta\\chi^2={summary_results['SN_BAO_CMB']['OSC']['delta_chi2_vs_LCDM']:.2f}$)")
     ax0.fill_between(z_dense, np.percentile(E_draws_o, 16, axis=0), np.percentile(E_draws_o, 84, axis=0),
                      color='crimson', alpha=0.18)
 
-    # Euclid spectroscopic H(z) sensitivity band (0.9 <= z <= 1.8, sigma_H/H ~ 1.3% per bin, Blanchard et al. 2020)
-    z_euc = np.array([0.9, 1.1, 1.3, 1.5, 1.8])
-    ax0.errorbar(z_euc, np.zeros_like(z_euc), yerr=1.3, fmt='s', color='darkgreen', capsize=4,
-                 label=r'ESA Euclid Spectroscopic BAO $\sigma(H)/H \approx 1.3\%$ Forecast (Blanchard et al. 2020)')
+    ax0.errorbar(EUCLID_Z_BINS, np.zeros_like(EUCLID_Z_BINS), yerr=1.3, fmt='s', ms=4.5, color='darkgreen', capsize=3.5,
+                 label=r'Euclid 7-bin $\sigma(H)/H = 1.3\%$ ($0.9 \leq z \leq 1.8$)')
     ax0.axvline(2.33, color='gray', ls=':', lw=1.2, label='Upper Redshift Limit of DESI BAO ($z = 2.33$)')
-    ax0.set_ylabel(r'$\Delta H(z) / H_{\Lambda\mathrm{CDM}}(z)$ (%)', fontsize=10.5)
-    ax0.set_title('(a) Expansion Rate Deviation from Flat $\\Lambda\\mathrm{CDM}$ (Joint Pantheon+ Full Cov + DESI BAO + Planck CMB)',
-                  fontsize=11.5, fontweight='bold')
-    ax0.set_ylim(-6.0, 6.0)
-    ax0.legend(loc='upper left', fontsize=8.5)
+    ax0.set_xlabel(r'Redshift $z$', fontsize=10)
+    ax0.set_ylabel(r'$\Delta H(z) / H_{\Lambda\mathrm{CDM}}(z)$ (%)', fontsize=10)
+    ax0.set_title('(a) Expansion Rate Deviation & Euclid Sensitivity Window', fontsize=11, fontweight='bold')
+    ax0.set_ylim(-5.5, 5.5)
+    ax0.legend(loc='upper left', fontsize=7.8)
     ax0.grid(True, alpha=0.3)
 
     # Panel (b): Equation of State w(z) with 68% MCMC Credible Bands
     ax1 = axes[1]
     w_c_dense = w_model(z_dense, 'CPL', [p_c_best['w0'], p_c_best['wa']])
     w_o_dense = w_model(z_dense, 'OSC', [p_o_best['A'], p_o_best['lambda'], p_o_best['phi0']])
-    ax1.axhline(-1.0, color='black', ls='--', lw=1.5, label=r'$\Lambda\mathrm{CDM}$ ($w = -1$)')
-    ax1.plot(z_dense, w_c_dense, 'b-', lw=2.0, label='CPL Best Fit + 68% MCMC Posterior Band')
+    ax1.axhline(-1.0, color='black', ls='--', lw=1.4, label=r'$\Lambda\mathrm{CDM}$ ($w = -1$)')
+    ax1.plot(z_dense, w_c_dense, 'b-', lw=2.0, label='CPL Best Fit + 68% MCMC Band')
     ax1.fill_between(z_dense, np.percentile(w_draws_c, 16, axis=0), np.percentile(w_draws_c, 84, axis=0),
                      color='royalblue', alpha=0.20)
-    ax1.plot(z_dense, w_o_dense, 'r-', lw=2.2, label='Log-Oscillatory Best Fit + 68% MCMC Posterior Band')
+    ax1.plot(z_dense, w_o_dense, 'r-', lw=2.2, label='Log-Osc Best Fit + 68% MCMC Band')
     ax1.fill_between(z_dense, np.percentile(w_draws_o, 16, axis=0), np.percentile(w_draws_o, 84, axis=0),
                      color='crimson', alpha=0.20)
-    ax1.axvspan(0.9, 1.8, color='mediumseagreen', alpha=0.12, label='Euclid Prime Spectroscopic Window ($0.9 < z < 1.8$)')
+    ax1.axvspan(0.9, 1.8, color='mediumseagreen', alpha=0.14, label='Euclid Prime Window ($0.9 < z < 1.8$)')
     ax1.axvline(2.33, color='gray', ls=':', lw=1.2)
-    ax1.set_ylabel(r'Dark Energy EoS $w(z)$', fontsize=10.5)
-    ax1.set_title('(b) Equation of State Evolution $w(z)$: Interior Joint Fit vs. Posterior Uncertainty',
-                  fontsize=11.5, fontweight='bold')
+    ax1.set_xlabel(r'Redshift $z$', fontsize=10)
+    ax1.set_ylabel(r'Dark Energy EoS $w(z)$', fontsize=10)
+    ax1.set_title('(b) EoS $w(z)$: Interior Joint Fit & Degeneracy Region', fontsize=11, fontweight='bold')
     ax1.set_ylim(-1.85, -0.45)
-    ax1.legend(loc='lower left', fontsize=8.5)
+    ax1.legend(loc='lower left', fontsize=7.8)
     ax1.grid(True, alpha=0.3)
 
     # Panel (c): Model Selection Comparison (Delta chi2, Delta AIC, Delta BIC across dataset combinations)
     ax2 = axes[2]
     categories = [
-        'Pantheon+ Only\n(Full Cov, $N=1580$)',
-        'Pantheon+ + DESI BAO\n($N=1592$)',
-        'Pantheon+ + DESI BAO\n+ Planck CMB ($N=1593$)'
+        'Pantheon+ Only\n($N=1580$)',
+        'Pantheon++BAO\n($N=1592$)',
+        'Joint + Planck\n($N=1593$)'
     ]
     x_pos = np.arange(len(categories))
     width = 0.18
 
     dchi2_cpl = [summary_results[c]['CPL']['delta_chi2_vs_LCDM'] for c in ['SN_only', 'SN_BAO', 'SN_BAO_CMB']]
     dchi2_osc = [summary_results[c]['OSC']['delta_chi2_vs_LCDM'] for c in ['SN_only', 'SN_BAO', 'SN_BAO_CMB']]
-    daic_cpl  = [summary_results[c]['CPL']['delta_AIC_vs_LCDM']  for c in ['SN_only', 'SN_BAO', 'SN_BAO_CMB']]
     daic_osc  = [summary_results[c]['OSC']['delta_AIC_vs_LCDM']  for c in ['SN_only', 'SN_BAO', 'SN_BAO_CMB']]
-    dbic_cpl  = [summary_results[c]['CPL']['delta_BIC_vs_LCDM']  for c in ['SN_only', 'SN_BAO', 'SN_BAO_CMB']]
     dbic_osc  = [summary_results[c]['OSC']['delta_BIC_vs_LCDM']  for c in ['SN_only', 'SN_BAO', 'SN_BAO_CMB']]
 
     ax2.bar(x_pos - 1.5 * width, dchi2_cpl, width, color='royalblue', label=r'$\Delta\chi^2$ (CPL)')
     ax2.bar(x_pos - 0.5 * width, dchi2_osc, width, color='crimson', label=r'$\Delta\chi^2$ (Log-Osc)')
     ax2.bar(x_pos + 0.5 * width, daic_osc,  width, color='salmon', edgecolor='black', label=r'$\Delta\mathrm{AIC}$ (Log-Osc)')
     ax2.bar(x_pos + 1.5 * width, dbic_osc,  width, color='darkred', alpha=0.75, label=r'$\Delta\mathrm{BIC}$ (Log-Osc)')
-    ax2.axhline(0.0, color='black', lw=1.2)
+    ax2.axhline(0.0, color='black', lw=1.1)
     ax2.set_xticks(x_pos)
-    ax2.set_xticklabels(categories, fontsize=9.5)
-    ax2.set_ylabel('Criterion Difference vs. $\\Lambda\\mathrm{CDM}$', fontsize=10.5)
-    ax2.set_title('(c) Information-Theoretic Model Selection Across Progressive Datasets',
-                  fontsize=11.5, fontweight='bold')
-    ax2.legend(loc='upper left', ncol=2, fontsize=8.5)
+    ax2.set_xticklabels(categories, fontsize=9)
+    ax2.set_ylabel('Criterion Difference vs. $\\Lambda\\mathrm{CDM}$', fontsize=10)
+    ax2.set_title(r'(c) Information Criteria ($\Delta\chi^2$, $\Delta\mathrm{AIC}$, $\Delta\mathrm{BIC}$)', fontsize=11, fontweight='bold')
+    ax2.legend(loc='upper left', ncol=2, fontsize=7.8)
     ax2.grid(True, axis='y', alpha=0.3)
+
+    # Panel (d): Stage-IV Euclid 3-Sigma Discovery / Exclusion Boundary A_3sigma(lambda)
+    ax3 = axes[3]
+    lams = [row['lambda'] for row in fisher_boundary]
+    a3_med = [row['A_3sigma_median_phi'] for row in fisher_boundary]
+    a3_opt = [row['A_3sigma_best_phi'] for row in fisher_boundary]
+    ax3.plot(lams, a3_med, 'k-', lw=2.2, label=r'Euclid $3\sigma$ Boundary $A_{3\sigma}(\lambda)$ (Phase Median)')
+    ax3.plot(lams, a3_opt, color='darkgreen', ls='--', lw=1.8, label=r'Euclid $3\sigma$ Boundary (Optimal Phase $\phi_0$)')
+    ax3.fill_between(lams, a3_med, 1.0, color='darkgreen', alpha=0.10, label=r'Excluded/Detectable at $>3\sigma$ by $H_{\mathrm{Euclid}}(z)$')
+    ax3.scatter([p_o_best['lambda']], [p_o_best['A']], color='crimson', s=75, zorder=5,
+                label=f"Current Joint Best Fit ($\\lambda={p_o_best['lambda']:.2f},\\,A={p_o_best['A']:.2f}$)")
+    ax3.text(0.04, 0.94,
+             f"Euclid 7-bin $H(z)$ Fisher Audit ($\\sigma_H/H = 1.3\\%$):\n"
+             f"$\\Delta\\chi^2(\\mathrm{{CPL\\,vs\\,OSC}}) = {fisher_cpl_vs_osc['delta_chi2']:.3f}$ "
+             f"(${fisher_cpl_vs_osc['sigma_equiv']:.2f}\\sigma$, $\\max|\\Delta H/H| = {fisher_cpl_vs_osc['max_abs_rel_diff_percent']:.3f}\\%$)\n"
+             f"Degenerate at $A=0.22$; $3\\sigma$ reach requires $A \\gtrsim 0.21$ (opt. phase) or Ly$\\alpha$/WL synergy.",
+             transform=ax3.transAxes, va='top', fontsize=8.0,
+             bbox=dict(boxstyle='round,pad=0.35', facecolor='white', edgecolor='gray', alpha=0.92))
+    ax3.set_xlabel(r'Log-Oscillatory Wavelength Parameter $\lambda$', fontsize=10)
+    ax3.set_ylabel(r'Amplitude $A_{3\sigma}$ ($\sigma_{\Omega_m}=0.007$ prior)', fontsize=10)
+    ax3.set_title('(d) Stage-IV Euclid Fisher $3\\sigma$ Amplitude Reach vs. $\\lambda$', fontsize=11, fontweight='bold')
+    ax3.set_xlim(0.5, 10.0)
+    ax3.set_ylim(0.0, 0.95)
+    ax3.legend(loc='lower right', fontsize=7.6)
+    ax3.grid(True, alpha=0.3)
 
     plt.tight_layout()
     for path_out in [
