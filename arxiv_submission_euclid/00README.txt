@@ -1,10 +1,11 @@
 arXiv Submission Package: oscillatory-dark-energy-euclid
 =========================================================
 
-Title: Forecasting Log-Oscillatory Dark Energy with ESA Euclid: Breaking the Degeneracy
+Title: Testing Log-Oscillatory Dark Energy with Pantheon+, DESI BAO, and Stage-IV Euclid Forecasts: Non-Linear Degeneracy and Fisher Matrix Limits
 Author: Bruno Lucardo Olivaes
 Primary Category: astro-ph.CO
 Cross-list: gr-qc
+DOI: 10.5281/zenodo.24121691
 
 Package Contents:
 - main.tex: Self-contained LaTeX document source.
@@ -19,4 +20,3 @@ pdflatex main.tex
 Notes:
 - Standard LaTeX packages used: amsmath, amssymb, geometry, graphicx, booktabs, hyperref.
 - Self-contained file referencing embedded bibliography and local figure.
-
