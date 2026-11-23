@@ -43,6 +43,16 @@ def test_oscillatory_rho_de_matches_numerical_quadrature():
 
 def test_desi_bao_planck_consistency():
     engine = CosmologyLikelihoodEngine()
-    c_sn, c_bao, c_cmb = engine.compute_chi2_components(0.314, 'LCDM', [], use_bao=True, use_cmb=False)
-    assert c_bao < 25.0  # 12 BAO points should have chi2 ~ 14.5 for LCDM
+    c_sn, c_bao, c_cmb = engine.compute_chi2_components(
+        0.314, 'LCDM', [], use_bao=True, use_cmb=False
+    )
+    assert c_bao < 25.0  # 12 DR1 BAO points should have chi2 ~ 14.5 for LCDM
+
+    engine_dr2 = CosmologyLikelihoodEngine(sn_dataset='pantheon_plus', bao_dataset='desi_dr2')
+    c_sn2, c_bao2, c_cmb2 = engine_dr2.compute_chi2_components(
+        0.3014, 'LCDM', [], h=0.6855, omega_b=0.02253, use_bao=True, use_cmb=True, cmb_mode='planck_3d'
+    )
+    assert c_bao2 < 20.0
+    assert c_cmb2 < 6.0
+
 

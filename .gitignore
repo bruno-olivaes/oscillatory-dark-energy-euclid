@@ -8,4 +8,6 @@ manuscript/*.aux
 manuscript/*.log
 manuscript/*.out
 results/*.npy
+data/des_sn5yr/*.npz
+data/pantheon_plus/
 
