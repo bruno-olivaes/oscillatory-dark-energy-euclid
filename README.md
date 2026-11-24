@@ -1,6 +1,6 @@
 # Logarithmic Oscillatory Dark Energy: DESI DR2, DES-SN5YR Dovekie & Pre-Registered 2027 Euclid Forecast (v3.0)
 
-[![Zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24121691.svg)](https://doi.org/10.5281/zenodo.24121691)
+[![Zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24485004.svg)](https://doi.org/10.5281/zenodo.24485004)
 [![Paper PDF](https://img.shields.io/badge/Paper-PDF_Manuscript-red.svg)](Oscillatory_Dark_Energy_Euclid_PreRegistration.pdf)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10+-green.svg)](https://www.python.org/)
 [![Tests: 12/12](https://img.shields.io/badge/pytest-12%2F12_passed-brightgreen.svg)]()
