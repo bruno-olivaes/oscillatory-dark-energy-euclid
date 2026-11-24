@@ -6,7 +6,7 @@
 [![Tests: 12/12](https://img.shields.io/badge/pytest-12%2F12_passed-brightgreen.svg)]()
 [![Release: v3.0 Audited](https://img.shields.io/badge/Release-v3.0_DESI_DR2_&_Euclid_2027-brightgreen.svg)]()
 
-A pre-registered observational cosmology and Stage-IV Fisher forecasting pipeline testing bounded **Logarithmic Oscillatory Dark Energy** $w(a) = -1 + A \sin(\frac{2\pi}{\lambda}\ln a + \phi_0) = -1 + A \cos(\omega\ln(1+z) + \tilde{\phi}_0)$ ($\omega = 2\pi/\lambda$, $\tilde{\phi}_0 = 3\pi/2 - \phi_0$) against flat $\Lambda\mathrm{CDM}$ and linear **CPL** using **Pantheon+ ($N=1,580$)**, official **DES-SN5YR Dovekie ($N=1,820$)**, official **DESI DR1 ($N=12$) & DESI DR2 ($N=13$, arXiv:2503.14738)** BAO, and the **full 3D Planck 2018 $(R, l_A, \omega_b)$** distance prior.
+A pre-registered observational cosmology and Stage-IV Fisher forecasting pipeline testing bounded **Logarithmic Oscillatory Dark Energy** $w(a) = -1 + A \sin(\frac{2\pi}{\lambda}\ln a + \phi_0) = -1 + A \cos(\omega\ln(1+z) + \tilde{\phi}_0)$ ($\omega = 2\pi/\lambda$, $\tilde{\phi}_0 = \pi/2 - \phi_0 \pmod{2\pi}$) against flat $\Lambda\mathrm{CDM}$ and linear **CPL** using **Pantheon+ ($N=1,580$)**, official **DES-SN5YR Dovekie ($N=1,820$)**, official **DESI DR1 ($N=12$) & DESI DR2 ($N=13$, arXiv:2503.14738)** BAO, and the **full 3D Planck 2018 $(R, l_A, \omega_b)$** distance prior.
 
 ---
 
