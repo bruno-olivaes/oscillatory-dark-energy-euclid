@@ -19,5 +19,28 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt pytest
+      - name: Cache official survey datasets (Pantheon+ and DES-SN5YR Dovekie)
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/pantheon_plus
+            data/des_sn5yr
+          key: cosmo-datasets-v1-${{ hashFiles('src/data_loader.py') }}
+      - name: Fetch missing survey datasets from official DataReleases
+        run: |
+          python - << 'EOF'
+          import os
+          import urllib.request
+          from src.data_loader import download_pantheon_plus
+
+          download_pantheon_plus()
+          des_dir = os.path.join("data", "des_sn5yr")
+          os.makedirs(des_dir, exist_ok=True)
+          base = "https://raw.githubusercontent.com/des-science/DES-SN5YR/main/4_DISTANCES_COVMAT"
+          for fname, url_name in [("DES-Dovekie_HD.csv", "DES-Dovekie_HD.csv"), ("STAT+SYS.npz", "STAT%2BSYS.npz")]:
+              dest = os.path.join(des_dir, fname)
+              if not os.path.isfile(dest):
+                  urllib.request.urlretrieve(f"{base}/{url_name}", dest)
+          EOF
       - name: Run cosmology likelihood & stress test suite
         run: pytest tests/ -v
